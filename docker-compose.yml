@@ -1,0 +1,14 @@
+services:
+  mysql_container:
+    image: mysql:8.0
+    container_name: ProjetoDelivery
+    environment:
+      MYSQL_ROOT_PASSWORD: "04863147155"
+      MYSQL_DATABASE: API_Delivery
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data_container:/var/lib/mysql
+
+volumes:
+  mysql_data_container:
