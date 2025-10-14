@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 @Slf4j
@@ -19,5 +21,13 @@ public class ClienteRepositoryMySQL implements ClienteRepository {
         Cliente novoCliente = clienteMySQLSpringRepository.save(cliente);
         log.info("[Finaliza] ClienteRepositoryMySQL - salva");
         return novoCliente;
+    }
+
+    @Override
+    public Optional<Cliente> buscaPorEmail(String email) {
+        log.info("[Inicia] ClienteRepositoryMySQL - buscaPorEmail");
+        Optional<Cliente> cliente = clienteMySQLSpringRepository.findByEmail(email);
+        log.info("[Finaliza] ClienteRepositoryMySQL - buscaPorEmail");
+        return cliente;
     }
 }
