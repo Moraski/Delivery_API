@@ -1,5 +1,6 @@
 package com.Moraski.DeliveryAPI.Cliente.application.api;
 
+import com.Moraski.DeliveryAPI.Cliente.application.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
