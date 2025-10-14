@@ -27,9 +27,9 @@ public class ClienteController implements ClienteAPI{
 
     @Override
     public ClienteResponse getClientePorId(UUID idCliente) {
-        log.info("[Inicia] ClienteController - postNovoCliente");
+        log.info("[Inicia] ClienteController - getClientePorId");
         ClienteResponse clienteResponse = clienteService.buscarClientePorId(idCliente);
-        log.info("[Finaliza] ClienteController - postNovoCliente");
+        log.info("[Finaliza] ClienteController - getClientePorId");
         return clienteResponse;
     }
 }
