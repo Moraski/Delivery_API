@@ -4,6 +4,9 @@ import com.Moraski.DeliveryAPI.Cliente.application.api.ClienteNovoRequest;
 import com.Moraski.DeliveryAPI.Cliente.application.api.ClienteResponse;
 import jakarta.validation.Valid;
 
+import java.util.UUID;
+
 public interface ClienteService {
     ClienteResponse criarNovoCliente(@Valid ClienteNovoRequest cliente);
+    ClienteResponse buscarClientePorId(UUID idCliente);
 }

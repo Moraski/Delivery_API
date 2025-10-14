@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -30,6 +32,14 @@ public class ClienteApplicationService implements ClienteService{
         var cliente = new Cliente(clienteNovo);
         clienteRepository.salva(cliente);
         log.info("[Finaliza] ClienteApplicationService - criaNovoCliente");
-        return null;
+        return new ClienteResponse(cliente);
+    }
+
+    @Override
+    public ClienteResponse buscarClientePorId(UUID idCliente) {
+        log.info("[Inicia] ClienteApplicationService - buscarClientePorId");
+        Cliente cliente = clienteRepository.buscaPorId(idCliente);
+        log.info("[Finaliza] ClienteApplicationService - buscarClientePorId");
+        return new ClienteResponse(cliente);
     }
 }
