@@ -22,19 +22,19 @@ public class Cliente {
     @GeneratedValue
     private UUID idCliente;
 
-    @Column
+    @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false)
     private String cpf;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String telefone;
 
-    @Column
+    @Column(nullable = false)
     private String endereco;
 
     public Cliente(@Valid ClienteNovoRequest clienteNovo) {
