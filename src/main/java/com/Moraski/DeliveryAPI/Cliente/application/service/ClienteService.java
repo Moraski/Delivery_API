@@ -11,4 +11,5 @@ public interface ClienteService {
     ClienteResponse criarNovoCliente(@Valid ClienteNovoRequest cliente);
     ClienteResponse buscarClientePorId(UUID idCliente);
     ClienteResponse editaCliente(UUID idCliente, EditaClienteRequest editaClienteRequest);
+    void deletaCliente(UUID idCliente);
 }

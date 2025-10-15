@@ -42,4 +42,11 @@ public class ClienteRepositoryMySQL implements ClienteRepository {
         log.info("[Finaliza] ClienteRepositoryMySQL - buscaPorId");
         return cliente;
     }
+
+    @Override
+    public void deletaCliente(UUID idCliente) {
+        log.info("[Inicia] ClienteRepositoryMySQL - deletaCliente");
+        clienteMySQLSpringRepository.delete(buscaPorId(idCliente));
+        log.info("[Finaliza] ClienteRepositoryMySQL - deletaCliente");
+    }
 }

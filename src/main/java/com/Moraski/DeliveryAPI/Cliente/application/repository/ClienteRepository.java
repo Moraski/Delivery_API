@@ -9,4 +9,5 @@ public interface ClienteRepository {
     Cliente salva(Cliente cliente);
     Optional<Cliente> buscaPorEmail(String email);
     Cliente buscaPorId(UUID idCliente);
+    void  deletaCliente(UUID idCliente);
 }
