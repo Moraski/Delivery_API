@@ -22,4 +22,9 @@ public interface ClienteAPI {
     @PutMapping(value = "/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     ClienteResponse editaCliente(@PathVariable UUID idCliente, @RequestBody @Valid EditaClienteRequest editaClienteRequest);
+
+    @DeleteMapping(value = "/{idCliente}/delete")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deletaCliente(@PathVariable UUID idCliente);
+
 }
