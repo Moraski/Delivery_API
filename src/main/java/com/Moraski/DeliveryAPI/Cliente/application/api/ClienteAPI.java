@@ -18,4 +18,8 @@ public interface ClienteAPI {
     @GetMapping(value = "/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     ClienteResponse getClientePorId(@PathVariable UUID idCliente);
+
+    @PutMapping(value = "/{idCliente}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ClienteResponse editaCliente(@PathVariable UUID idCliente, @RequestBody @Valid EditaClienteRequest editaClienteRequest);
 }

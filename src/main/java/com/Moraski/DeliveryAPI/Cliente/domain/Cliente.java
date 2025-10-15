@@ -1,6 +1,7 @@
 package com.Moraski.DeliveryAPI.Cliente.domain;
 
 import com.Moraski.DeliveryAPI.Cliente.application.api.ClienteNovoRequest;
+import com.Moraski.DeliveryAPI.Cliente.application.api.EditaClienteRequest;
 import com.Moraski.DeliveryAPI.handler.APIException;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -46,14 +47,11 @@ public class Cliente {
         this.endereco = clienteNovo.getEndereco();
     }
 
-    public void editaCliente(String nome, String cpf, String email, String telefone, String endereco){
-        if (nome == null || nome.isBlank()){
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Nome não pode estar vazio");
-        }
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
-        this.endereco = endereco;
+    public void editaCliente(EditaClienteRequest editaClienteRequest){
+        this.nome = editaClienteRequest.getNome();
+        this.cpf = editaClienteRequest.getCpf();
+        this.email = editaClienteRequest.getEmail();
+        this.telefone = editaClienteRequest.getTelefone();
+        this.endereco = editaClienteRequest.getEndereco();
     }
 }

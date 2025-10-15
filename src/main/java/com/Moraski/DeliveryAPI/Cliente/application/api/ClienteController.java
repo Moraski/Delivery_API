@@ -32,4 +32,12 @@ public class ClienteController implements ClienteAPI{
         log.info("[Finaliza] ClienteController - getClientePorId");
         return clienteResponse;
     }
+
+    @Override
+    public ClienteResponse editaCliente(UUID idCliente, EditaClienteRequest editaClienteRequest) {
+        log.info("[Inicia] ClienteController - editaCliente");
+        ClienteResponse clienteResponse = clienteService.editaCliente(idCliente, editaClienteRequest);
+        log.info("[Finaliza] ClienteController - editaCliente");
+        return clienteResponse;
+    }
 }
