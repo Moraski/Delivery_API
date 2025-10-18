@@ -33,7 +33,7 @@ public class Item {
     public Item(@Valid ItemNovoRequest itemNovo){
         this.idItem = itemNovo.getIdItem();
         this.produto = itemNovo.getProduto();
-        this.valorUnitario = itemNovo.getValorUniterio();
+        this.valorUnitario = itemNovo.getValorUnitario();
         this.descrição = itemNovo.getDescricao();
     }
 
