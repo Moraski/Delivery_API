@@ -1,5 +1,6 @@
 package com.Moraski.DeliveryAPI.Item.application.service;
 
+import com.Moraski.DeliveryAPI.Item.application.api.EditaItemRequest;
 import com.Moraski.DeliveryAPI.Item.application.api.ItemNovoRequest;
 import com.Moraski.DeliveryAPI.Item.application.api.ItemResponse;
 import com.Moraski.DeliveryAPI.Item.application.repository.ItemRepository;
@@ -31,6 +32,16 @@ public class ItemApplicationService implements ItemService{
         log.info("[Inicia] ClienteApplicationService - buscarItemPorId");
         Item item = itemRepository.bucaPorId(idItem);
         log.info("[Finaliza] ClienteApplicationService - buscarItemPorId");
+        return new ItemResponse(item);
+    }
+
+    @Override
+    public ItemResponse editaItem(UUID idItem, EditaItemRequest itemEditado) {
+        log.info("[Inicia] ClienteApplicationService - editaItem");
+        Item item = itemRepository.bucaPorId(idItem);
+        item.editaItem(itemEditado);
+        itemRepository.salva(item);
+        log.info("[Finaliza] ClienteApplicationService - editaItem");
         return new ItemResponse(item);
     }
 }
