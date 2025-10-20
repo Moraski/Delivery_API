@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface ItemService {
     ItemResponse criarNovoItem(ItemNovoRequest itemNovo);
     ItemResponse buscarItemPorId(UUID idItem);
-    ItemResponse editaItem(UUID idItem, EditaItemRequest itemEditado);
+    void deletaItem(UUID idItem);
 }

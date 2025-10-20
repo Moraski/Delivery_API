@@ -34,10 +34,9 @@ public class ItemController implements ItemAPI{
     }
 
     @Override
-    public ItemResponse editaItem(UUID idItem, EditaItemRequest item) {
-        log.info("[Inicia] ItemController - editaItem");
-        ItemResponse response = itemservece.editaItem(idItem, item);
-        log.info("[Finaliza] ItemController - editaItem");
-        return response;
+    public void deleteItem(UUID idItem) {
+        log.info("[Inicia] ItemController - deleteItem");
+        itemservece.deletaItem(idItem);
+        log.info("[Finaliza] ItemController - deleteItem");
     }
 }

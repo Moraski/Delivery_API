@@ -36,12 +36,9 @@ public class ItemApplicationService implements ItemService{
     }
 
     @Override
-    public ItemResponse editaItem(UUID idItem, EditaItemRequest itemEditado) {
-        log.info("[Inicia] ClienteApplicationService - editaItem");
-        Item item = itemRepository.bucaPorId(idItem);
-        item.editaItem(itemEditado);
-        itemRepository.salva(item);
-        log.info("[Finaliza] ClienteApplicationService - editaItem");
-        return new ItemResponse(item);
+    public void deletaItem(UUID idItem) {
+        log.info("[Inicia] ClienteApplicationService - deletaItem");
+        itemRepository.delete(idItem);
+        log.info("[Finaliza] ClienteApplicationService - deletaItem");
     }
 }
