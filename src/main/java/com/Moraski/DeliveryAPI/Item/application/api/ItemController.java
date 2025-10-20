@@ -32,4 +32,12 @@ public class ItemController implements ItemAPI{
         log.info("[Finaliza] ItemController - getItemPorId");
         return response;
     }
+
+    @Override
+    public ItemResponse editaItem(UUID idItem, EditaItemRequest item) {
+        log.info("[Inicia] ItemController - editaItem");
+        ItemResponse response = itemservece.editaItem(idItem, item);
+        log.info("[Finaliza] ItemController - editaItem");
+        return response;
+    }
 }

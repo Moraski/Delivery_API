@@ -17,4 +17,8 @@ public interface ItemAPI {
     @ResponseStatus(code = HttpStatus.OK)
     ItemResponse getItemPorId(@PathVariable UUID idItem);
 
+    @PutMapping("/{idItem}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ItemResponse editaItem(@PathVariable UUID idItem, @RequestBody @Valid EditaItemRequest item);
+
 }
