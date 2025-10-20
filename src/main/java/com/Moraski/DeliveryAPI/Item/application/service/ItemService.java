@@ -1,5 +1,6 @@
 package com.Moraski.DeliveryAPI.Item.application.service;
 
+import com.Moraski.DeliveryAPI.Item.application.api.EditaItemRequest;
 import com.Moraski.DeliveryAPI.Item.application.api.ItemNovoRequest;
 import com.Moraski.DeliveryAPI.Item.application.api.ItemResponse;
 
