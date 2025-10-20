@@ -17,4 +17,7 @@ public interface ItemAPI {
     @ResponseStatus(code = HttpStatus.OK)
     ItemResponse getItemPorId(@PathVariable UUID idItem);
 
+    @DeleteMapping("/{idItem}/delete")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deleteItem(@PathVariable UUID idItem);
 }
