@@ -34,4 +34,11 @@ public class ItemRepositoryMySQL implements ItemRepository {
         log.info("[finaliza] ItemRepositoryMySQL - bucaPorId");
         return item;
     }
+
+    @Override
+    public void delete(UUID idItem) {
+        log.info("[Inicia] ItemRepositoryMySQL - delete");
+        itemMySQLSprinRepository.delete(bucaPorId(idItem));
+        log.info("[finaliza] ItemRepositoryMySQL - delete");
+    }
 }
