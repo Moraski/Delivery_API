@@ -2,6 +2,7 @@ package com.Moraski.DeliveryAPI.Item.application.api;
 
 
 import com.Moraski.DeliveryAPI.Item.application.service.ItemService;
+import com.Moraski.DeliveryAPI.Item.domain.Item;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +31,14 @@ public class ItemController implements ItemAPI{
         log.info("[Inicia] ItemController - getItemPorId");
         ItemResponse response = itemservece.buscarItemPorId(idItem);
         log.info("[Finaliza] ItemController - getItemPorId");
+        return response;
+    }
+
+    @Override
+    public ItemResponse editaItem(UUID idItem, EditaItemRequest item) {
+        log.info("[Inicia] ItemController - editaItem");
+        ItemResponse response = itemservece.editaItem(idItem, item);
+        log.info("[Finaliza] ItemController - editaItem");
         return response;
     }
 
