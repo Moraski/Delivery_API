@@ -2,6 +2,7 @@ package com.Moraski.DeliveryAPI.ItensDoPedido.domain;
 
 
 import com.Moraski.DeliveryAPI.Item.domain.Item;
+import com.Moraski.DeliveryAPI.Pedido.domain.Pedido;
 import jakarta.persistence.*;
 import lombok.*;
 
