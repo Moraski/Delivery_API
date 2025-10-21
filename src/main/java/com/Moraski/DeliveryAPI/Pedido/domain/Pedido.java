@@ -46,27 +46,12 @@ public class Pedido {
                 .sum();
     }
 
-    public Pedido(PedidoNovoRequest request, ItemRepository itemRepository){
+    public Pedido(PedidoNovoRequest request, List<ItensDoPedido> itensDoPedido) {
 
         this.idCliente = request.getIdCliente();
         this.dataCriacao = LocalDateTime.now();
         this.statusPedido = request.getStatusPedido();
-
-        if (request.getItensDoPedido() != null){
-            this.itensDoPedido = request.getItensDoPedido().stream()
-                    .map( i -> {
-                        Item item = itemRepository.bucaPorId(i.getIdItem());
-                        if (item == null){
-                            throw APIException.build(HttpStatus.NOT_FOUND, "Item especificado não foi encontrado");
-                        }
-                        return ItensDoPedido.builder()
-                                .item(item)
-                                .quantidade(i.getQuantidade())
-                                .pedido(this)
-                                .build();
-                    })
-                    .collect(Collectors.toList());
-        }
+        this.itensDoPedido = itensDoPedido;
     }
 
     public void editaPedido(StatusPedido statusPedido){
