@@ -45,6 +45,19 @@ public class PedidoApplicationService implements PedidoService{
         return new PedidoResponse(pedido);
     }
 
+    @Override
+    public List<PedidoResponse>  buscarPedidoPorIdCliente(UUID idCliente) {
+        log.info("[Inicia] PedidoApplicationService - buscarPedidoPorIdCliente");
+        List<Pedido> pedidos = pedidoRepository.buscarPorIdCliente(idCliente);
+        if (pedidos.isEmpty()){
+            log.warn("Nenhum pedido encontrado para o cliente: {}", idCliente);
+        }
+        log.info("[Finaliza] PedidoApplicationService - buscarPedidoPorIdCliente");
+        return pedidos.stream()
+                .map(PedidoResponse::new)
+                .collect(Collectors.toList());
+    }
+
 
     private List<ItensDoPedido> montaItensDoPedido(PedidoNovoRequest pedidoNovo) {
         if (pedidoNovo.getItensDoPedido() == null || pedidoNovo.getItensDoPedido().isEmpty()) {
