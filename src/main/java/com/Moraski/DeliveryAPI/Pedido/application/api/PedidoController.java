@@ -40,4 +40,12 @@ public class PedidoController implements PedidoAPI {
         log.info("[Finaliza] PedidoController - getPedidoPorIdCliente");
         return response;
     }
+
+    @Override
+    public PedidoResponse mudaStatusPedido(UUID idPedido, MudaStatusPedido mudaStatusPedido) {
+        log.info("[Inicia] PedidoController - mudaStatusPedido");
+        PedidoResponse response = pedidoService.mudaStatusPedido(idPedido, mudaStatusPedido);
+        log.info("[Finaliza] PedidoController - mudaStatusPedido");
+        return response;
+    }
 }
