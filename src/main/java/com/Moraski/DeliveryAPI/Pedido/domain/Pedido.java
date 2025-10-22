@@ -40,24 +40,24 @@ public class Pedido {
     @Column(nullable = false)
     private LocalDateTime dataCriacao;
 
-    public Double getTotal(){
-        return itensDoPedido.stream()
-                .mapToDouble(ItensDoPedido::getSubtotal)
-                .sum();
-    }
 
     public Pedido(PedidoNovoRequest request, List<ItensDoPedido> itensDoPedido) {
-
         this.idCliente = request.getIdCliente();
         this.dataCriacao = LocalDateTime.now();
         this.statusPedido = request.getStatusPedido();
-        this.itensDoPedido = itensDoPedido;
+        this.itensDoPedido = itensDoPedido.stream()
+                .map(i -> new ItensDoPedido(i.getItem(), i.getQuantidade(), this))
+                .toList();
     }
-
     public void editaPedido(StatusPedido statusPedido){
         if (statusPedido == null){
             throw APIException.build(HttpStatus.BAD_REQUEST, "Status do pedido não pode estar vazio");
         }
         this.statusPedido = statusPedido;
+    }
+    public Double getTotal(){
+        return itensDoPedido.stream()
+                .mapToDouble(ItensDoPedido::getSubtotal)
+                .sum();
     }
 }

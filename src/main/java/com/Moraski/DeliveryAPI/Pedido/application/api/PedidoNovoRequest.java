@@ -18,10 +18,6 @@ public class PedidoNovoRequest {
     @NotNull(message = "idCliente é obrigatório")
     UUID idCliente;
 
-    @NotBlank(message = "Endereço de entrega é obrigatório")
-    @Size(max = 100, message = "Endereço de entrega não pode ultrapassar 100 caracteres")
-    String enderecoEntrega;
-
     @NotNull(message = "O status do pedido é obrigatório")
     StatusPedido statusPedido;
 
