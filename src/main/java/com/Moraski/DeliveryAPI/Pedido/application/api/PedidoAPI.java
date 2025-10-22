@@ -5,6 +5,7 @@ import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping(value = "/public/v1/pedido")
@@ -20,5 +21,5 @@ public interface PedidoAPI {
 
     @GetMapping("/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
-    PedidoResponse getPedidoPorIdCliente(@PathVariable UUID idCliente);
+    List<PedidoResponse> getPedidoPorIdCliente(@PathVariable UUID idCliente);
 }
