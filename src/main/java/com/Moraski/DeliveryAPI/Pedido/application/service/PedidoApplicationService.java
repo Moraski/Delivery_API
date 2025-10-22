@@ -2,6 +2,7 @@ package com.Moraski.DeliveryAPI.Pedido.application.service;
 
 import com.Moraski.DeliveryAPI.Item.application.repository.ItemRepository;
 import com.Moraski.DeliveryAPI.ItensDoPedido.domain.ItensDoPedido;
+import com.Moraski.DeliveryAPI.Pedido.application.api.MudaStatusPedido;
 import com.Moraski.DeliveryAPI.Pedido.application.api.PedidoNovoRequest;
 import com.Moraski.DeliveryAPI.Pedido.application.api.PedidoResponse;
 import com.Moraski.DeliveryAPI.Pedido.application.repository.PedidoRepository;
@@ -57,6 +58,17 @@ public class PedidoApplicationService implements PedidoService{
         return pedidos.stream()
                 .map(PedidoResponse::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public PedidoResponse mudaStatusPedido(UUID idPedido, MudaStatusPedido mudaStatusPedido) {
+        log.info("[Inicia] PedidoApplicationService - mudaStatusPedido");
+        Pedido pedido = pedidoRepository.buscarPorId(idPedido);
+        pedido.editaPedido(mudaStatusPedido.getStatusPedido());
+        pedidoRepository.salva(pedido);
+        log.info("[Finaliza] PedidoApplicationService - mudaStatusPedido");
+        return new PedidoResponse(pedido);
     }
 
 
