@@ -24,15 +24,14 @@ public class PedidoApplicationService implements PedidoService{
     private final ItemRepository itemRepository;
 
     @Override
-    public PedidoResponse criarNovoPedido(PedidoNovoRequest pedidoNovo) {
+    public PedidoResponse criarNovoPedido(PedidoNovoRequest request) {
         log.info("[Inicia] PedidoApplicationService - criarNovoPedido");
 
-        var itens = montaItensDoPedido(pedidoNovo);
-
-        var pedido = new Pedido(pedidoNovo, itens);
+        var itens = montaItensDoPedido(request);
+        var pedido = new Pedido(request, itens);
         pedidoRepository.salva(pedido);
         log.info("[Finaliza] PedidoApplicationService - criarNovoPedido");
-        return null;
+        return new PedidoResponse(pedido);
     }
 
 

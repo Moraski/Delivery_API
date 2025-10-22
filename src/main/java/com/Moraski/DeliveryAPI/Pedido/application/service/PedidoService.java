@@ -4,5 +4,5 @@ import com.Moraski.DeliveryAPI.Pedido.application.api.PedidoNovoRequest;
 import com.Moraski.DeliveryAPI.Pedido.application.api.PedidoResponse;
 
 public interface PedidoService {
-    PedidoResponse criarNovoPedido(PedidoNovoRequest pedidoNovo);
+    PedidoResponse criarNovoPedido(PedidoNovoRequest request);
 }
