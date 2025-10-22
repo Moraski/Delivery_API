@@ -11,6 +11,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "pedido_itens")
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @ToString
@@ -22,17 +23,17 @@ public class ItensDoPedido {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pedido", nullable = false)
-    private final Pedido pedido;
+    private Pedido pedido;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_item", nullable = false)
-    private final Item item;
+    private Item item;
 
     @Column(nullable = false)
-    private final Integer quantidade;
+    private Integer quantidade;
 
     @Column(nullable = false)
-    private final Double subtotal;
+    private Double subtotal;
 
     // Construtor principal
     public ItensDoPedido(Item item, Integer quantidade, Pedido pedido) {
