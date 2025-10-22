@@ -46,6 +46,7 @@ public class PedidoApplicationService implements PedidoService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<PedidoResponse>  buscarPedidoPorIdCliente(UUID idCliente) {
         log.info("[Inicia] PedidoApplicationService - buscarPedidoPorIdCliente");
         List<Pedido> pedidos = pedidoRepository.buscarPorIdCliente(idCliente);
