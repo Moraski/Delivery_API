@@ -4,6 +4,6 @@ public enum StatusPedido {
     AGUARDANDO_PAGAMENTO,
     EM_PREPARO,
     EM_ENTREGA,
-    ENTRTEGUE,
+    ENTREGUE,
     CANCELADO
 }
