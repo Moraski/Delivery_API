@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -32,5 +33,19 @@ public class PedidoRepositoryMySQL implements PedidoRepository {
                         .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND, "Pedido não Encontrado"));
         log.info("[finaliza] PedidoRepositoryMySQL - buscarPorId");
         return pedido;
+    }
+
+    @Override
+    public List<Pedido> buscarPorIdCliente(UUID idCliente) {
+        log.info("[Inicia] PedidoRepositoryMySQL - buscaPorIdCliente");
+        List<Pedido> pedidos = pedidoMySQLSpringRepository.buscaPorIdCliente(idCliente);
+
+
+        if (pedidos.isEmpty()) {
+            log.warn("Nenhum pedido encontrado para o cliente: {}", idCliente);
+        }
+
+        log.info("[finaliza] PedidoRepositoryMySQL - buscaPorIdCliente");
+        return pedidos;
     }
 }
