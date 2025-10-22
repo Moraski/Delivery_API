@@ -40,39 +40,24 @@ public class Pedido {
     @Column(nullable = false)
     private LocalDateTime dataCriacao;
 
-    public Double getTotal(){
-        return itensDoPedido.stream()
-                .mapToDouble(ItensDoPedido::getSubtotal)
-                .sum();
-    }
 
-    public Pedido(PedidoNovoRequest request, ItemRepository itemRepository){
-
+    public Pedido(PedidoNovoRequest request, List<ItensDoPedido> itensDoPedido) {
         this.idCliente = request.getIdCliente();
         this.dataCriacao = LocalDateTime.now();
         this.statusPedido = request.getStatusPedido();
-
-        if (request.getItensDoPedido() != null){
-            this.itensDoPedido = request.getItensDoPedido().stream()
-                    .map( i -> {
-                        Item item = itemRepository.bucaPorId(i.getIdItem());
-                        if (item == null){
-                            throw APIException.build(HttpStatus.NOT_FOUND, "Item especificado não foi encontrado");
-                        }
-                        return ItensDoPedido.builder()
-                                .item(item)
-                                .quantidade(i.getQuantidade())
-                                .pedido(this)
-                                .build();
-                    })
-                    .collect(Collectors.toList());
-        }
+        this.itensDoPedido = itensDoPedido.stream()
+                .map(i -> new ItensDoPedido(i.getItem(), i.getQuantidade(), this))
+                .toList();
     }
-
     public void editaPedido(StatusPedido statusPedido){
         if (statusPedido == null){
             throw APIException.build(HttpStatus.BAD_REQUEST, "Status do pedido não pode estar vazio");
         }
         this.statusPedido = statusPedido;
+    }
+    public Double getTotal(){
+        return itensDoPedido.stream()
+                .mapToDouble(ItensDoPedido::getSubtotal)
+                .sum();
     }
 }

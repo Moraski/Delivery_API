@@ -16,7 +16,6 @@ import java.util.UUID;
 @Builder
 @ToString
 public class Item {
-
     @Id
     @GeneratedValue
     private UUID idItem;
@@ -29,6 +28,7 @@ public class Item {
 
     @Column(nullable = false)
     private String descrição;
+
 
     public Item(@Valid ItemNovoRequest itemNovo){
         this.idItem = itemNovo.getIdItem();
