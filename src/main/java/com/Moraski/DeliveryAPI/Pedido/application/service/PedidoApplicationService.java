@@ -11,8 +11,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -31,6 +33,15 @@ public class PedidoApplicationService implements PedidoService{
         var pedido = new Pedido(request, itens);
         pedidoRepository.salva(pedido);
         log.info("[Finaliza] PedidoApplicationService - criarNovoPedido");
+        return new PedidoResponse(pedido);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PedidoResponse buscarPedidoPorId(UUID idPedido) {
+        log.info("[Inicia] PedidoApplicationService - buscarPedidoPorId");
+        Pedido pedido = pedidoRepository.buscarPorId(idPedido);
+        log.info("[Finaliza] PedidoApplicationService - buscarPedidoPorId");
         return new PedidoResponse(pedido);
     }
 

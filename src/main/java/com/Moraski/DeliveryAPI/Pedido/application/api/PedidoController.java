@@ -6,6 +6,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @Validated
 @Log4j2
@@ -18,6 +20,14 @@ public class PedidoController implements PedidoAPI {
     public PedidoResponse postNovoPedido(PedidoNovoRequest pedidoNovo) {
         log.info("[Inicia] PedidoController - postNovoPedido");
         PedidoResponse response = pedidoService.criarNovoPedido(pedidoNovo);
+        log.info("[Finaliza] PedidoController - postNovoPedido");
+        return response;
+    }
+
+    @Override
+    public PedidoResponse getPedidoPorId(UUID idPedido) {
+        log.info("[Inicia] PedidoController - postNovoPedido");
+        PedidoResponse response = pedidoService.buscarPedidoPorId(idPedido);
         log.info("[Finaliza] PedidoController - postNovoPedido");
         return response;
     }
