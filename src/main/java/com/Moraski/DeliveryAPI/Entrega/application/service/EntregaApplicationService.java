@@ -52,4 +52,12 @@ public class EntregaApplicationService implements EntregaService {
         log.info("[Finaliza] EntregaApplicationService - criarEntrega");
         return new EntregaResponse(entrega);
     }
+
+    @Override
+    public EntregaResponse buscarPorId(UUID idEntrega) {
+        log.info("[Inicia] EntregaApplicationService - buscarPorId");
+        Entrega entrega = entregaRepository.buscarPorId(idEntrega);
+        log.info("[Finaliza] EntregaApplicationService - buscarPorId");
+        return new EntregaResponse(entrega);
+    }
 }
