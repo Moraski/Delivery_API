@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 
 @RestController
 @Validated
@@ -22,6 +24,14 @@ public class EntregaController implements EntregaAPI {
         log.info("[Inicia] EntregaController - postNovaEntrega");
         EntregaResponse response = entregaService.criarEntrega(novaEntrega);
         log.info("[Finaliza] EntregaController - postNovaEntrega");
+        return response;
+    }
+
+    @Override
+    public EntregaResponse getEntrega(UUID idEntrega) {
+        log.info("[Inicia] EntregaController - GetEntrega");
+        EntregaResponse response = entregaService.buscarPorId(idEntrega);
+        log.info("[Finaliza] EntregaController - GetEntrega");
         return response;
     }
 }
