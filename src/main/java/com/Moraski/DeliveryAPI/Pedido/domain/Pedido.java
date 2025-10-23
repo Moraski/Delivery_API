@@ -1,5 +1,6 @@
 package com.Moraski.DeliveryAPI.Pedido.domain;
 
+import com.Moraski.DeliveryAPI.Entrega.domain.Entrega;
 import com.Moraski.DeliveryAPI.Item.application.repository.ItemRepository;
 import com.Moraski.DeliveryAPI.Item.domain.Item;
 import com.Moraski.DeliveryAPI.ItensDoPedido.domain.ItensDoPedido;
@@ -40,6 +41,8 @@ public class Pedido {
     @Column(nullable = false)
     private LocalDateTime dataCriacao;
 
+    @OneToOne(mappedBy = "pedido")
+    private Entrega entrega;
 
     public Pedido(PedidoNovoRequest request, List<ItensDoPedido> itensDoPedido) {
         this.idCliente = request.getIdCliente();
@@ -60,4 +63,9 @@ public class Pedido {
                 .mapToDouble(ItensDoPedido::getSubtotal)
                 .sum();
     }
+
+    public void vincularEntrega(Entrega entrega) {
+        this.entrega = entrega;
+    }
+
 }
