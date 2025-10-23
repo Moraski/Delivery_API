@@ -11,13 +11,6 @@ import java.util.UUID;
 
 public interface PedidoMySQLSpringRepository extends JpaRepository<Pedido, UUID> {
 
-
-//    @Query("SELECT p FROM Pedido p " +
-//            "LEFT JOIN FETCH p.itens i " +
-//            "LEFT JOIN FETCH i.item " +
-//            "WHERE p.idPedido = :idPedido")
-//    Optional<Pedido> buscaPorId(@Param("idPedido") UUID idPedido);
-
     @Query("SELECT p FROM Pedido p LEFT JOIN FETCH p.itensDoPedido WHERE p.idCliente = :idCliente")
     List<Pedido> buscaPorIdCliente(@Param("idCliente") UUID idCliente);
 
