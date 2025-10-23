@@ -8,4 +8,5 @@ import java.util.UUID;
 public interface EntregaService {
     EntregaResponse criarEntrega(EntregaNovoRequest novaEntrega);
     EntregaResponse buscarPorId(UUID idEntrega);
+    EntregaResponse finalizaEntrega(UUID idEntrega);
 }
