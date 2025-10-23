@@ -17,4 +17,8 @@ public interface EntregaAPI {
     @GetMapping("/{idEntrega}")
     @ResponseStatus(HttpStatus.OK)
     EntregaResponse getEntrega(@PathVariable UUID idEntrega);
+
+    @PutMapping("/{idEntrega}/finaliza")
+    @ResponseStatus(HttpStatus.OK)
+    EntregaResponse finalizaEntrega(@PathVariable UUID idEntrega);
 }

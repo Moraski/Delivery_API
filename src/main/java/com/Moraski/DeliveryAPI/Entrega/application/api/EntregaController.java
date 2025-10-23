@@ -34,4 +34,12 @@ public class EntregaController implements EntregaAPI {
         log.info("[Finaliza] EntregaController - GetEntrega");
         return response;
     }
+
+    @Override
+    public EntregaResponse finalizaEntrega(UUID idEntrega) {
+        log.info("[Inicia] EntregaController - finalizaEntrega");
+        EntregaResponse response = entregaService.finalizaEntrega(idEntrega);
+        log.info("[Finaliza] EntregaController - finalizaEntrega");
+        return response;
+    }
 }
