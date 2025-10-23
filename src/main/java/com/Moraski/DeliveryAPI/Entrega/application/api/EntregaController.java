@@ -20,7 +20,7 @@ public class EntregaController implements EntregaAPI {
     @Override
     public EntregaResponse postNovaEntrega(EntregaNovoRequest novaEntrega) {
         log.info("[Inicia] EntregaController - postNovaEntrega");
-        EntregaResponse response = entregaService.criarEntrega(entregaNovo);
+        EntregaResponse response = entregaService.criarEntrega(novaEntrega);
         log.info("[Finaliza] EntregaController - postNovaEntrega");
         return response;
     }

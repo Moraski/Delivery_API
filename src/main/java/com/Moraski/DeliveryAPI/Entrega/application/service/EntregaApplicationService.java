@@ -23,4 +23,33 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EntregaApplicationService implements EntregaService {
 
+    private final EntregaRepository entregaRepository;
+    private final PedidoRepository pedidoRepository;
+    private final ClienteRepository clienteRepository;
+
+    @Override
+    public EntregaResponse criarEntrega(EntregaNovoRequest novaEntrega) {
+        log.info("[Inicia] EntregaApplicationService - criarEntrega");
+
+        Pedido pedido = pedidoRepository.buscarPorId(novaEntrega.getIdPedido());
+        if (pedido == null){
+            throw APIException.build(HttpStatus.NOT_FOUND, "Pedido Não encontrado");
+        }
+        if (pedido.getEntrega() != null){
+
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Entrega já criada para esse pedido");
+        }
+
+        Cliente cliente = clienteRepository.buscaPorId(pedido.getIdCliente());
+        String enderecoEntrega = cliente.getEndereco();
+
+        Entrega entrega = new Entrega(pedido, enderecoEntrega);
+        pedido.vincularEntrega(entrega);
+        pedido.editaPedido(StatusPedido.EM_ENTREGA);
+
+        entregaRepository.salva(entrega);
+
+        log.info("[Finaliza] EntregaApplicationService - criarEntrega");
+        return new EntregaResponse(entrega);
+    }
 }
