@@ -1,5 +1,7 @@
 package com.Moraski.DeliveryAPI.Entrega.application.repository;
 
-public interface EntregaRepository {
+import com.Moraski.DeliveryAPI.Entrega.domain.Entrega;
 
+public interface EntregaRepository {
+    Entrega salva(Entrega entrega);
 }

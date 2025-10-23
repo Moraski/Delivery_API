@@ -16,4 +16,13 @@ import java.util.UUID;
 @Slf4j
 public class EntregaRepositoryMySQL implements EntregaRepository {
 
+    private final EntregaMySQLSpringRepository entregaMySQLSpringRepository;
+
+    @Override
+    public Entrega salva(Entrega entrega) {
+        log.info("[Inicia] EntregaRepositoryMySQL - salva");
+        Entrega novaEntrega = entregaMySQLSpringRepository.save(entrega);
+        log.info("[Finaliza] EntregaRepositoryMySQL - salva");
+        return novaEntrega;
+    }
 }

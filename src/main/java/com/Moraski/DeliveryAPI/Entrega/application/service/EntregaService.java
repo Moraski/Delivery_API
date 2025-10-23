@@ -6,5 +6,5 @@ import com.Moraski.DeliveryAPI.Entrega.application.api.EntregaResponse;
 import java.util.UUID;
 
 public interface EntregaService {
-
+    EntregaResponse criarEntrega(EntregaNovoRequest novaEntrega);
 }

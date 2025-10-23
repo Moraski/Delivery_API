@@ -16,4 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class EntregaController implements EntregaAPI {
 
     private final EntregaService entregaService;
+
+    @Override
+    public EntregaResponse postNovaEntrega(EntregaNovoRequest novaEntrega) {
+        log.info("[Inicia] EntregaController - postNovaEntrega");
+        EntregaResponse response = entregaService.criarEntrega(novaEntrega);
+        log.info("[Finaliza] EntregaController - postNovaEntrega");
+        return response;
+    }
 }
