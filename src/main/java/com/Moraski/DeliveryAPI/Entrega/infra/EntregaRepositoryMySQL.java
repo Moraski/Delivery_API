@@ -25,4 +25,13 @@ public class EntregaRepositoryMySQL implements EntregaRepository {
         log.info("[Finaliza] EntregaRepositoryMySQL - salva");
         return novaEntrega;
     }
+
+    @Override
+    public Entrega buscarPorId(UUID idEntrega) {
+        log.info("[Inicia] EntregaRepositoryMySQL - buscarPorId");
+        Entrega entrega = entregaMySQLSpringRepository.findById(idEntrega)
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Entrega não encontrada"));
+        log.info("[Finaliza] EntregaRepositoryMySQL - buscarPorId");
+        return entrega;
+    }
 }
